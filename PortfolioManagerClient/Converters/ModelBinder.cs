@@ -1,4 +1,5 @@
-﻿using PortfolioManagerClient.Models;
+﻿using ORM;
+using PortfolioManagerClient.Models;
 using Proxy;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace PortfolioManagerClient.Converters
             var result =  list.Select(c => new PortfolioItemViewModel
             {
                 ItemId = c.ItemId,
-                SharesNumber = c.SharesNumber,
+                SharesNumber = c.SharesNymber,
                 Symbol = c.Symbol,
                 UserId = c.UserId,
             }).ToList();

@@ -13,11 +13,7 @@ namespace ORM
         }
 
 
-        DbSet<PortfolioItem> PortfolioItems { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-        }
+        public virtual DbSet<PortfolioItem> PortfolioItems { get; set; }
 
     }
 
