@@ -16,7 +16,7 @@ namespace ORM
         [StringLength(10)]
         public string Symbol { get; set; }
 
-        public int SharesNymber { get; set; }
+        public int? SharesNumber { get; set; }
 
         public int Id { get; set; }
     }

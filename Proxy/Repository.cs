@@ -16,8 +16,6 @@ namespace Proxy
 
         void Delete(int id);
 
-        PortfolioItem GetById(int id);
-
         IEnumerable<PortfolioItem> GetAll();
 
     }
@@ -39,33 +37,35 @@ namespace Proxy
 
         public void Create(PortfolioItem item)
         {
-            _portfolioItemViewModel.Add(item);
+            _portfolioItems.Add(item);
+            SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var model = _portfolioItemViewModel.Find(c => c.ItemId == id);
-            _portfolioItemViewModel.Remove(model);
+            var model = _portfolioItems.FirstOrDefault(c=>c.ItemId == id);
+            _portfolioItems.Remove(model);
+            SaveChanges();
         }
 
         public void Edit(PortfolioItem item)
         {
-            var model = _portfolioItemViewModel.Find(c => c.ItemId == item.ItemId);
+            var model = _portfolioItems.FirstOrDefault(c => c.ItemId == item.ItemId);
             model.Symbol = item.Symbol;
-
-            throw new NotImplementedException();
+            model.SharesNumber = item.SharesNumber;
+            model.UserId = item.UserId;
+            SaveChanges();
         }
 
         public IEnumerable<PortfolioItem> GetAll()
         {
             return _portfolioItems;
-           // return _portfolioItemViewModel;
         }
 
-        public PortfolioItem GetById(int id)
+
+        private void SaveChanges()
         {
-            var item = _portfolioItemViewModel.Find(c=>c.ItemId == id);
-            return item;
+            _context.SaveChanges();
         }
     }
 }

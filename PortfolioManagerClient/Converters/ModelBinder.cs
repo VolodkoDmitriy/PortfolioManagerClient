@@ -15,12 +15,34 @@ namespace PortfolioManagerClient.Converters
             var result =  list.Select(c => new PortfolioItemViewModel
             {
                 ItemId = c.ItemId,
-                SharesNumber = c.SharesNymber,
+                SharesNumber = c.SharesNumber,
                 Symbol = c.Symbol,
                 UserId = c.UserId,
             }).ToList();
 
             return result;
+        }
+
+        public static PortfolioItemViewModel PortfolioItemToPortfolioItemViewModel(this PortfolioItem item)
+        {
+            return new PortfolioItemViewModel
+            {
+                ItemId = item.ItemId,
+                SharesNumber = item.SharesNumber,
+                Symbol = item.Symbol,
+                UserId = item.UserId,
+            };
+        }
+
+        public static PortfolioItem PortfolioItemViewModelToPortfolioItem(this PortfolioItemViewModel item)
+        {
+            return new PortfolioItem
+            {
+                ItemId = item.ItemId,
+                SharesNumber = item.SharesNumber,
+                Symbol = item.Symbol,
+                UserId = item.UserId,
+            };
         }
     }
 }

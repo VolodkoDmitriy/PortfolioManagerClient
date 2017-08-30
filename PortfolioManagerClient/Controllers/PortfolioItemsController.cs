@@ -15,11 +15,13 @@ namespace PortfolioManagerClient.Controllers
         private readonly PortfolioItemsService _portfolioItemsService = new PortfolioItemsService();
         private readonly UsersService _usersService = new UsersService();
         private List<PortfolioItemViewModel> _portfolioItemViewModel = new List<PortfolioItemViewModel>();
-        private IRepository _repository = new Repository();
+        private MediatorService _mediatorService ;
+        
 
         public PortfolioItemsController()
         {
-            _portfolioItemViewModel = _repository.GetAll().PortfolioItemsToPortfolioItemViewModels();
+            _mediatorService =  new MediatorService(_usersService.GetOrCreateUser());
+            _portfolioItemViewModel = _mediatorService.GetAllLocal().PortfolioItemsToPortfolioItemViewModels();
         }
         /// <summary>
         /// Returns all portfolio items for the current user.
@@ -29,7 +31,9 @@ namespace PortfolioManagerClient.Controllers
         {
 
             var userId = _usersService.GetOrCreateUser();
-            return _portfolioItemsService.GetItems(userId);
+            
+            // return _portfolioItemsService.GetItems(userId).PortfolioItemsToPortfolioItemViewModels();
+            return _mediatorService.GetAllLocal().PortfolioItemsToPortfolioItemViewModels();
         }
 
         /// <summary>
@@ -38,8 +42,9 @@ namespace PortfolioManagerClient.Controllers
         /// <param name="portfolioItem">The portfolio item to update.</param>
         public void Put(PortfolioItemViewModel portfolioItem)
         {
-            portfolioItem.UserId = _usersService.GetOrCreateUser();
-            _portfolioItemsService.UpdateItem(portfolioItem);
+            _mediatorService.Edit(portfolioItem.PortfolioItemViewModelToPortfolioItem());
+            //portfolioItem.UserId = _usersService.GetOrCreateUser();
+            //_portfolioItemsService.UpdateItem(portfolioItem.PortfolioItemViewModelToPortfolioItem());
         }
 
         /// <summary>
@@ -48,7 +53,8 @@ namespace PortfolioManagerClient.Controllers
         /// <param name="id">The portfolio item identifier.</param>
         public void Delete(int id)
         {
-            _portfolioItemsService.DeleteItem(id);
+            _mediatorService.Delete(id);
+            //_portfolioItemsService.DeleteItem(id);
         }
 
         /// <summary>
@@ -57,8 +63,9 @@ namespace PortfolioManagerClient.Controllers
         /// <param name="portfolioItem">The portfolio item to create.</param>
         public void Post(PortfolioItemViewModel portfolioItem)
         {
-            portfolioItem.UserId = _usersService.GetOrCreateUser();
-            _portfolioItemsService.CreateItem(portfolioItem);
+          //  _portfolioItemsService.CreateItem(portfolioItem.PortfolioItemViewModelToPortfolioItem());
+
+            _mediatorService.Create(portfolioItem.PortfolioItemViewModelToPortfolioItem());
         }
     }
 }
