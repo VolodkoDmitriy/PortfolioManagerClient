@@ -122,5 +122,10 @@ $(function () {
     portfolioManager.loadItems()
         .done(function(items) {
             portfolioManager.displayItems("#items > tbody", items);
+
+            $.getJSON("api/PortfolioItems/GetRemote", function () {
+                portfolioManager.displayItems("#items > tbody", items);
+            });
+           
         });
 });

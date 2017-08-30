@@ -38,13 +38,13 @@ namespace PortfolioManagerClient.Controllers
         }
 
         [Route("api/PortfolioItems/GetRemote")]
-        public IList<PortfolioItemViewModel> GetRemote()
+        public void GetRemote()
         {
 
             var userId = _usersService.GetOrCreateUser();
 
             // return _portfolioItemsService.GetItems(userId).PortfolioItemsToPortfolioItemViewModels();
-            return _mediatorService.GetAllRemote().PortfolioItemsToPortfolioItemViewModels();
+             _mediatorService.GetAllRemote();//.PortfolioItemsToPortfolioItemViewModels();
         }
 
         /// <summary>

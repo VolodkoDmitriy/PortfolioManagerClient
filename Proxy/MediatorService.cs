@@ -64,9 +64,50 @@ namespace Proxy
             return _repositoryService.GetAll();
         }
 
-        public IEnumerable<PortfolioItem> GetAllRemote()
+        public void GetAllRemote()
         {
-            return _repositoryService.GetAll();
+            var remoteList =  _remoteService.GetItems(_userId);
+            var localList = _repositoryService.GetAll();
+
+            var deletedItemList = localList.Except(remoteList,new PortfolioComparer()).ToList();
+            var addedItemList = remoteList.Except(localList, new PortfolioComparer());
+
+            foreach (var item in deletedItemList)
+            { _repositoryService.Delete(item.ItemId.Value); }
+            //TODO : Block delete/create
+
+            localList =  localList.Except(deletedItemList);
+            foreach (var item in localList)
+            {
+                var temp = remoteList.FirstOrDefault(c => c.ItemId == item.ItemId);
+                if (item.SharesNumber != temp.SharesNumber)
+                {
+                    _repositoryService.Edit(temp);
+                }
+            }
+
+            foreach (var item in addedItemList)
+            {
+                _repositoryService.Create(item);
+            }
+
         }
     }
+
+    public class PortfolioComparer : IEqualityComparer<PortfolioItem>
+    {
+        public int GetHashCode(PortfolioItem obj)
+        {
+            return obj.ItemId.Value;
+        }
+
+        bool IEqualityComparer<PortfolioItem>.Equals(PortfolioItem x, PortfolioItem y)
+        {
+            return x.ItemId == y.ItemId;
+        }
+
+
+    }
+
+
 }
