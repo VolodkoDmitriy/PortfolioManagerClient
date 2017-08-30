@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioManagerClient", "PortfolioManagerClient\PortfolioManagerClient.csproj", "{DCF98A24-6871-43D7-BAB1-0D00B7A59A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy", "Proxy\Proxy.csproj", "{5EC0659D-CF6C-46D8-AB7C-93CCE6058166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM", "ORM\ORM.csproj", "{0D51BB26-92A4-41CE-B027-8FE41175B529}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCF98A24-6871-43D7-BAB1-0D00B7A59A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF98A24-6871-43D7-BAB1-0D00B7A59A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF98A24-6871-43D7-BAB1-0D00B7A59A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF98A24-6871-43D7-BAB1-0D00B7A59A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EC0659D-CF6C-46D8-AB7C-93CCE6058166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EC0659D-CF6C-46D8-AB7C-93CCE6058166}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EC0659D-CF6C-46D8-AB7C-93CCE6058166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EC0659D-CF6C-46D8-AB7C-93CCE6058166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D51BB26-92A4-41CE-B027-8FE41175B529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D51BB26-92A4-41CE-B027-8FE41175B529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D51BB26-92A4-41CE-B027-8FE41175B529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D51BB26-92A4-41CE-B027-8FE41175B529}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
