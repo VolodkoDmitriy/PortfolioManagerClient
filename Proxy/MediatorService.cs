@@ -25,19 +25,37 @@ namespace Proxy
         public void Create(PortfolioItem item)
         {
             item.UserId = _userId;
-            _repositoryService.Create(item);
-            //_remoteService.CreateItem(item);
+            try
+            {
+                _remoteService.CreateItem(item);
+            }
+            catch { }
+
+            var newItem = _remoteService.GetItems(_userId).FirstOrDefault(c => c.Symbol.Equals(item.Symbol));
+            _repositoryService.Create(newItem);
         }
 
         public void Edit(PortfolioItem item)
         {
+
             item.UserId = _userId;
-            _repositoryService.Edit(item);
+            try
+            {
+                _remoteService.UpdateItem(item);
+                _repositoryService.Edit(item);
+            }
+            catch { }
+            
         }
 
         public void Delete(int id)
         {
-            _repositoryService.Delete(id);
+            try
+            {
+                _remoteService.DeleteItem(id);
+                _repositoryService.Delete(id);
+            }
+            catch { }
         }
 
 

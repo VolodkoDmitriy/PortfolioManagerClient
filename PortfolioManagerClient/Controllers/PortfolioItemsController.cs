@@ -27,13 +27,24 @@ namespace PortfolioManagerClient.Controllers
         /// Returns all portfolio items for the current user.
         /// </summary>
         /// <returns>The list of portfolio items.</returns>
-        public IList<PortfolioItemViewModel> Get()
+        [Route ("api/PortfolioItems/GetLocal")]
+        public IList<PortfolioItemViewModel> GetLocal()
         {
 
             var userId = _usersService.GetOrCreateUser();
             
             // return _portfolioItemsService.GetItems(userId).PortfolioItemsToPortfolioItemViewModels();
             return _mediatorService.GetAllLocal().PortfolioItemsToPortfolioItemViewModels();
+        }
+
+        [Route("api/PortfolioItems/GetRemote")]
+        public IList<PortfolioItemViewModel> GetRemote()
+        {
+
+            var userId = _usersService.GetOrCreateUser();
+
+            // return _portfolioItemsService.GetItems(userId).PortfolioItemsToPortfolioItemViewModels();
+            return _mediatorService.GetAllRemote().PortfolioItemsToPortfolioItemViewModels();
         }
 
         /// <summary>

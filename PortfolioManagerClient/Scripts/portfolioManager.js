@@ -24,7 +24,7 @@
     // starts loading portfolio items from server.
     // @returns a promise.
     var loadPortfolioItems = function() {
-        return $.getJSON("/api/portfolioitems");
+        return $.getJSON("/api/PortfolioItems/GetLocal");
     };
 
     // starts creating a portfolio item on the server.
